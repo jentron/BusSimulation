@@ -5,20 +5,25 @@ import java.time.temporal.ChronoUnit;
 import java.time.LocalTime;
 
 public class BusStop {
+	private String name;
 	private final int EMBARK = +1;
 	private final int DISEMBARK = -1;
 	private int waiting = 0;
 	private double riderRate; // riders per millisecond
 	private LocalTime lastBusTime;
+	private double weight = 0.25;
+	private double driveTime = 1.0;
 	
-	public BusStop(double ridersPerMinute, LocalTime startTime){
+	public BusStop(String name, double ridersPerMinute, LocalTime startTime, double driveMinutes){
 		this.lastBusTime = startTime;
 		this.riderRate = ridersPerMinute / (60); // convert minutes to seconds
+		this.driveTime = driveMinutes;
+		this.name = name;
 	}
 	
-	private void log(LocalTime t, int riders, int direction) {
-		System.out.printf("BusStop\tTime: %s, Riders: %s, Left Waiting: %d\n",
-				t.toString(), (direction*riders), this.waiting);
+	private void log(LocalTime t, String m, int riders) {
+		System.out.printf("Stop %s\tTime: %s, %s %d, Left Waiting: %d\n",
+				this.name, t.toString(), m, riders, this.waiting);
 	}
 	/* Spawn a given number of riders per minute */
 	public int getRiders(LocalTime t, int max)
@@ -28,13 +33,21 @@ public class BusStop {
 			this.waiting += riders - max; // make them wait
 			riders = max; // fill the request
 		}
-		this.lastBusTime = t;
-		this.log(t, riders, EMBARK);
+		if(riders > 0 ) {
+			this.lastBusTime = t;
+		}
+		this.log(t, "Passengers Loading:", riders);
 		return riders;
 	}
 
 	/* document riders getting off */
-	public void removeRiders(LocalTime t, int riders) {
-				this.log(t, riders, DISEMBARK);
+	public int removeRiders(LocalTime t, int riders) {
+		int ridersGettingOff = (int) ((double)riders * this.weight);
+				this.log(t, "Passengers Unloading", ridersGettingOff);
+				return ridersGettingOff;
+	}
+
+	public double getDriveTime() {
+		return this.driveTime;
 	}
 }
