@@ -3,10 +3,10 @@ package com.jentronics.mathbus;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
 
-public class MathBus {
+public class MathBusTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		LocalTime timer = LocalTime.now();
 		
 		BusStop stop = new BusStop(2, timer);

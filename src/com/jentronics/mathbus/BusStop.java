@@ -17,7 +17,7 @@ public class BusStop {
 	}
 	
 	private void log(LocalTime t, int riders, int direction) {
-		System.out.printf("Bus Time: %s, Riders: %s, Left Waiting: %d\n",
+		System.out.printf("BusStop\tTime: %s, Riders: %s, Left Waiting: %d\n",
 				t.toString(), (direction*riders), this.waiting);
 	}
 	/* Spawn a given number of riders per minute */
