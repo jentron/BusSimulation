@@ -15,11 +15,23 @@ public class BusStop {
 	private double driveTime = 1.0;
 	
 	public BusStop(String name, double ridersPerMinute, LocalTime startTime, double driveMinutes, double weight){
-		this.lastBusTime = startTime;
+		this.lastBusTime = null;
 		this.riderRate = ridersPerMinute / (60); // convert minutes to seconds
 		this.driveTime = driveMinutes;
 		this.name = name;
 		this.weight = weight;
+	}
+	
+	public void info(){
+		String lastBus;
+		if(this.lastBusTime == null ) lastBus="None";
+		else lastBus = this.lastBusTime.toString();
+		System.out.printf("%s\tlast bus\t%s\tdrive time\t%.2f\trider rate\t%.2f\tweight\t%.2f\n",
+				this.name, 
+				lastBus, 
+				this.driveTime, 
+				this.riderRate, 
+				this.weight);
 	}
 	
 	private void log(LocalTime t, String m, int riders) {
@@ -29,10 +41,18 @@ public class BusStop {
 	/* Spawn a given number of riders per minute */
 	public int getRiders(LocalTime t, int max)
 	{
-		int riders = (int) (riderRate * ChronoUnit.SECONDS.between(this.lastBusTime, t)) + this.waiting;
+		int riders;
+		if(this.lastBusTime == null){
+			riders = (int) (riderRate * 600);// assume a 10 minute delay
+			this.lastBusTime = t;
+		} else {
+			riders = (int) (riderRate * ChronoUnit.SECONDS.between(this.lastBusTime, t)) + this.waiting;
+		}
 		if(riders > max) { // if more passengers want to get on than we have space for
 			this.waiting += riders - max; // make them wait
 			riders = max; // fill the request
+		} else {
+			this.waiting = 0;
 		}
 		if(riders > 0 ) {
 			this.lastBusTime = t;
