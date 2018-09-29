@@ -14,7 +14,7 @@ public class BusRoute {
 		}
 		double drivetime = 0;
 		for(int i=1; i <= numberOfStops; i++) {
-			stops.add(new BusStop(Integer.toString(i), ridersPerMinute, startTime.plusMinutes(busIntervalMinutes * (i-1)/numberOfStops), drivetime, (double)i/numberOfStops));
+			stops.add(new BusStop(Integer.toString(i), ridersPerMinute, startTime.minusMinutes(busIntervalMinutes * (i)/numberOfStops), drivetime, (double)i/numberOfStops));
 			drivetime = 2.5;
 		}
 	}
