@@ -12,9 +12,9 @@ public class MathBus {
 		double ridersPerMinute = 0.7;
 		
 		BusRoute route = new BusRoute(numberOfBuses, startTime, busIntervalMinutes, numberOfStops, ridersPerMinute);
-		route.stopsInfo();
+		//route.stopsInfo();
 		route.run();
-		//route.run();
+		route.run();
 
 	}
 

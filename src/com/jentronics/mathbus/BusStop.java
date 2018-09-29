@@ -43,7 +43,7 @@ public class BusStop {
 	{
 		int riders;
 		if(this.lastBusTime == null){
-			riders = (int) (riderRate * 600);// assume a 10 minute delay
+			riders = (int) (riderRate * 900);// assume a 15 minute delay
 			this.lastBusTime = t;
 		} else {
 			riders = (int) (riderRate * ChronoUnit.SECONDS.between(this.lastBusTime, t)) + this.waiting;
