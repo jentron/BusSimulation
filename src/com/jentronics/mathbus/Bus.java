@@ -17,8 +17,8 @@ public class Bus {
 	}
 	
 	private void log(String m, int r, long t, int err){
-		System.out.printf("Bus %s\tTime: %s, Passengers %s: %d in %d seconds, leaving %d\n",
-				 this.busName, this.busTime.toString(), m, r, t, err);
+		System.out.printf("Bus %s\tTime\t%s\tPassengers %s\t%d\t%d seconds\n",
+				 this.busName, this.busTime.toString(), m, r, t);
 	}
 	
 	public int getRiders(){return this.riders;}

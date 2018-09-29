@@ -14,20 +14,18 @@ public class BusRoute {
 		}
 		double drivetime = 0;
 		for(int i=1; i <= numberOfStops; i++) {
-			stops.add(new BusStop(Integer.toString(i), ridersPerMinute, startTime, drivetime));
+			stops.add(new BusStop(Integer.toString(i), ridersPerMinute, startTime.plusMinutes(busIntervalMinutes * (i-1)/numberOfStops), drivetime, (double)i/numberOfStops));
 			drivetime = 2.5;
 		}
 	}
 	
 	public boolean run(){
-		for (Bus b : buses) {
-			for(BusStop s : stops ) {
+		for(BusStop s : stops ) {
+			for (Bus b : buses) {
 				b.drive(s.getDriveTime());
 				b.unload(s.removeRiders(b.getTime(), b.getRiders()));
 				b.load(s.getRiders(b.getTime(), b.getSpace()));				
 			}
-
-
 		}
 		return true;
 	}

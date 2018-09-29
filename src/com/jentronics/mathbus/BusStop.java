@@ -14,15 +14,16 @@ public class BusStop {
 	private double weight = 0.25;
 	private double driveTime = 1.0;
 	
-	public BusStop(String name, double ridersPerMinute, LocalTime startTime, double driveMinutes){
+	public BusStop(String name, double ridersPerMinute, LocalTime startTime, double driveMinutes, double weight){
 		this.lastBusTime = startTime;
 		this.riderRate = ridersPerMinute / (60); // convert minutes to seconds
 		this.driveTime = driveMinutes;
 		this.name = name;
+		this.weight = weight;
 	}
 	
 	private void log(LocalTime t, String m, int riders) {
-		System.out.printf("Stop %s\tTime: %s, %s %d, Left Waiting: %d\n",
+		System.out.printf("Stop %s\tTime\t%s\t%s\t%d\t\tLeft Waiting\t%d\n",
 				this.name, t.toString(), m, riders, this.waiting);
 	}
 	/* Spawn a given number of riders per minute */
@@ -36,7 +37,7 @@ public class BusStop {
 		if(riders > 0 ) {
 			this.lastBusTime = t;
 		}
-		this.log(t, "Passengers Loading:", riders);
+		this.log(t, "Passengers Loading", riders);
 		return riders;
 	}
 
