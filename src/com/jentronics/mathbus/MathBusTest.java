@@ -14,7 +14,7 @@ public class MathBusTest {
 			timer = timer.plusSeconds( i * 60 );
 			stop.getRiders(timer, 6);			
 		}
-		Bus bus = new BusBuilder().setBusStartTime(timer).setBusName( "1").build();
+		Bus bus = new BusFactor().setBusStartTime(timer).setBusName( "1").build();
 		bus.load(5);
 		bus.load(60);
 		bus.unload(55);
