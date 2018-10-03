@@ -2,7 +2,7 @@ package com.jentronics.mathbus;
 
 import java.time.LocalTime;
 
-public class BusFactor {
+public class BusFactory {
 
 	private String busName = "Unlabled Bus";
 	private int capacity = 60;
@@ -11,32 +11,32 @@ public class BusFactor {
 	private double unloadTimeSeconds = 5.0;
 	private LocalTime startTime;
 
-	BusFactor setBusName(String busName) {
+	BusFactory setBusName(String busName) {
 		this.busName = busName;
 		return this;
 	}
 
-	BusFactor setCapacity(Integer capacity) {
+	BusFactory setCapacity(Integer capacity) {
 		this.capacity = capacity;
 		return this;
 	}
 
-	BusFactor setRiders(Integer riders) {
+	BusFactory setRiders(Integer riders) {
 		this.riders = riders;
 		return this;
 	}
 	
-	BusFactor setLoadTimeSeconds( double loadTimeSeconds) {
+	BusFactory setLoadTimeSeconds( double loadTimeSeconds) {
 		this.loadTimeSeconds = loadTimeSeconds;
 		return this;
 	}
 	
-	BusFactor setUnloadTimeSeconds( double unloadTimeSeconds){
+	BusFactory setUnloadTimeSeconds( double unloadTimeSeconds){
 		this.unloadTimeSeconds = unloadTimeSeconds;
 		return this;
 	}
 		
-	BusFactor setBusStartTime (LocalTime startTime) {
+	BusFactory setBusStartTime (LocalTime startTime) {
 		this.startTime = startTime;
 		return this;
 	}

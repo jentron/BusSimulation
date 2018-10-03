@@ -13,7 +13,7 @@ public class BusRoute {
 	BusRoute(int numberOfBuses, LocalTime startTime, int busIntervalMinutes, int numberOfStops, double ridersPerMinute){
 		for(int i=1; i<=numberOfBuses; i++) {
 			buses.add(
-				new BusFactor()
+				new BusFactory()
 					.setCapacity(60)
 					.setBusStartTime(startTime.plusMinutes(busIntervalMinutes*(i-1)))
 					.setBusName(Integer.toString(i))

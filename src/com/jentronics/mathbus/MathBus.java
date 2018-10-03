@@ -13,7 +13,7 @@ public class MathBus {
 		
 		BusRoute route = new BusRoute(numberOfBuses, startTime, busIntervalMinutes, numberOfStops, ridersPerMinute);
 		//route.stopsInfo();
-		route.run();
+		//route.run();
 		route.run();
 
 	}
