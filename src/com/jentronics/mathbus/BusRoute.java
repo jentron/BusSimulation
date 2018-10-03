@@ -2,6 +2,8 @@ package com.jentronics.mathbus;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class BusRoute {
@@ -22,6 +24,14 @@ public class BusRoute {
 	
 	public boolean run(){
 		for(BusStop s : stops ) {
+//			Resort buses so they arrive at a stop in temporal order
+			Collections.sort(buses, new Comparator<Bus>() {
+			    @Override
+			    public int compare(Bus lhs, Bus rhs) {
+			    //	LocalTime t= lhs.getTime();
+			        return lhs.getTime().compareTo(rhs.getTime());
+			    }
+			});
 			for (Bus b : buses) {
 				b.drive(s.getDriveTime());
 				b.unload(s.removeRiders(b.getTime(), b.getRiders()));
