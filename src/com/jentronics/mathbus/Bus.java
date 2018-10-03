@@ -9,13 +9,21 @@ public class Bus {
 	private double loadTimeSeconds = 10.0;
 	private double unloadTimeSeconds = 5.0;
 	private LocalTime busTime;
-	
+/*	
 	Bus(int cap, LocalTime start, String name){
 		this.busName = name;
 		this.capacity = cap;
 		this.busTime = start;
 	}
-	
+*/
+	Bus(String busName, int cap, int riders, double loadTime, double unloadTime, LocalTime start){
+		this.busName = busName;
+		this.capacity = cap;
+		this.riders = riders;
+		this.loadTimeSeconds = loadTime;
+		this.unloadTimeSeconds = unloadTime;
+		this.busTime = start;
+	}	
 	private void log(String m, int r, long t, int err){
 		System.out.printf("Bus %s\tTime\t%s\tPassengers %s\t%d\t%d seconds\n",
 				 this.busName, this.busTime.toString(), m, r, t);
