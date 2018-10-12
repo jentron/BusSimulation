@@ -10,7 +10,7 @@ public class BusRoute {
 	private List<Bus>     buses = new ArrayList<Bus>();
 	private List<BusStop> stops = new ArrayList<BusStop>();
 	
-	BusRoute(int numberOfBuses, LocalTime startTime, int busIntervalMinutes, int numberOfStops, double ridersPerMinute){
+	BusRoute(int numberOfBuses, LocalTime startTime, int busIntervalMinutes, int numberOfStops, double ridersPerHour){
 		for(int i=1; i<=numberOfBuses; i++) {
 			buses.add(
 				new BusFactory()
@@ -22,8 +22,14 @@ public class BusRoute {
 		}
 		double drivetime = 0;
 		for(int i=1; i <= numberOfStops; i++) {
-			stops.add(new BusStop(Integer.toString(i), ridersPerMinute, 
-					startTime.plusMinutes(3 * (i)-10), drivetime, 0.33));
+			stops.add(new BusStopFactory()
+					.name("Stop " + Integer.toString(i))
+					.riderRatePerHour(ridersPerHour)
+					//.lastBusTime(startTime.plusMinutes(3 * (i)-10))
+					.driveTimeMinutes(drivetime)
+					.weight(0.33)
+					.ridersWaiting(0)
+					.build());
 			drivetime = 1.5;
 		}
 	}

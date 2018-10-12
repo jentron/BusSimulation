@@ -14,12 +14,13 @@ public class BusStop {
 	private double weight = 0.25;
 	private double driveTime = 1.0;
 	
-	public BusStop(String name, double ridersPerMinute, LocalTime startTime, double driveMinutes, double weight){
-		this.lastBusTime = null;
+	public BusStop(String name, double ridersPerMinute, LocalTime lastBusTime, double driveMinutes, double weight, int waiting){
+		this.lastBusTime = lastBusTime;
 		this.riderRate = ridersPerMinute / (60); // convert minutes to seconds
 		this.driveTime = driveMinutes;
 		this.name = name;
 		this.weight = weight;
+		this.waiting = waiting;
 	}
 	
 	public void info(){

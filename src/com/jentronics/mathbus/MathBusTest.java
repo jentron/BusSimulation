@@ -9,7 +9,7 @@ public class MathBusTest {
 		
 		LocalTime timer = LocalTime.now();
 		
-		BusStop stop = new BusStop("Test", 2, timer, 5, 0.25);
+		BusStop stop = new BusStop("Test", 2, timer, 5, 0.25,1);
 		for(int i=1; i< 6;i++){
 			timer = timer.plusSeconds( i * 60 );
 			stop.getRiders(timer, 6);			
